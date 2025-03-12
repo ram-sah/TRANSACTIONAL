@@ -53,11 +53,11 @@ public class ContainerService {
      */
     public List<Container> addListContainers(List<Container> containers) throws NegativeWeightException {
         List<Container> persistedContainers = new ArrayList<>();
-        for(int i = 0; i < containers.size(); i++){
-            if(containers.get(i).getWeight()<=0){
+        for(Container container: containers){
+            if(container.getWeight()<=0){
                 throw new NegativeWeightException();
             }
-            Container newContainer = containerRepository.save(containers.get(i));
+            Container newContainer = containerRepository.save(container);
             persistedContainers.add(newContainer);
         }
         return persistedContainers;
